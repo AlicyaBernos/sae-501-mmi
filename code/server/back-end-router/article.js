@@ -99,7 +99,7 @@ router.post([`/${base}/:id`, `/${base}/add`], upload.single("image"), async (req
     }
 
     if (listErrors.length || isEdit) {
-        res.render("", {
+        res.render("pages/back-end/articles/add-edit.njk", {
             article: ressource,
             list_errors: listErrors,
             list_authors: listAuthors,
