@@ -1,5 +1,6 @@
 import path from "path";
 import fs from "fs/promises";
+import { existsSync, mkdirSync } from "fs";
 import multer from "multer";
 
 import { imageValidator } from "#utils-shared";
@@ -28,8 +29,8 @@ const uploadImage = async (image, upload_dir) => {
     if (Object.keys(error) > 0) {
         listErrors.push(error.message);
     } else {
-        if (!fs.existsSync(upload_dir)) {
-            fs.mkdirSync(upload_dir, { recursive: true });
+        if (!existsSync(upload_dir)) {
+            mkdirSync(upload_dir, { recursive: true });
         }
 
         targetPath = `${upload_dir}${image.filename}`;
