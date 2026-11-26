@@ -47,10 +47,13 @@ router.get([`/${base}/:id`, `/${base}/add`], async (req, res) => {
             listErrors = data.list_errors;
         }
     }
+    const responseAuthors = await fetch(`${res.locals.base_url}/api/${ressourceNameInApi.authors}`); // fetch dit va chercher la liste des auteurs
+    const listAuthors = await responseAuthors.json(); // await = attendre la réponse ; et ici on met en javascript 
 
     res.render("pages/back-end/articles/add-edit.njk", {
         article: result,
         list_errors: listErrors,
+        list_authors: listAuthors, 
         is_edit: isEdit,
     });
 });
