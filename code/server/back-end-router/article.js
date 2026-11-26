@@ -47,10 +47,13 @@ router.get([`/${base}/:id`, `/${base}/add`], async (req, res) => {
             listErrors = data.list_errors;
         }
     }
+    const responseAuthors = await fetch(`${res.locals.base_url}/api/${ressourceNameInApi.authors}`); // fetch dit va chercher la liste des auteurs
+    const listAuthors = await responseAuthors.json(); // await = attendre la réponse ; et ici on met en javascript 
 
-    res.render("", {
+    res.render("pages/back-end/articles/add-edit.njk", {
         article: result,
         list_errors: listErrors,
+        list_authors: listAuthors, 
         is_edit: isEdit,
     });
 });
@@ -89,6 +92,7 @@ router.post([`/${base}/:id`, `/${base}/add`], upload.single("image"), async (req
 
     const responseAuthors = await fetch(`${res.locals.base_url}/api/${ressourceNameInApi.authors}`);
     const listAuthorsData = await responseAuthors.json();
+    listAuthors = listAuthorsData;
 
     if (response.ok && responseAuthors.ok) {
         ressource = data;
@@ -99,7 +103,7 @@ router.post([`/${base}/:id`, `/${base}/add`], upload.single("image"), async (req
     }
 
     if (listErrors.length || isEdit) {
-        res.render("", {
+        res.render("pages/back-end/articles/add-edit.njk", {
             article: ressource,
             list_errors: listErrors,
             list_authors: listAuthors,

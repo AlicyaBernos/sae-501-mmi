@@ -11,10 +11,8 @@ export const buildPayload = (body = {}, file = null) => {
         form.append(key, value);
     });
 
-    form.append(file.fieldname, fs.createReadStream(file.path), {
-        filename: file.originalname,
-        contentType: file.mimetype,
-    });
+    const imageBlob = new Blob([fs.readFileSync(file.path)], { type: file.mimetype });
+    form.append(file.fieldname, imageBlob, file.originalname); // problème ma version de node ne veut pas de lire le fichier petit à petit donc je le fais lire d'un coup
 
     return form;
 };
