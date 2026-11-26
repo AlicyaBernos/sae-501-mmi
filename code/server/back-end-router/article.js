@@ -92,6 +92,7 @@ router.post([`/${base}/:id`, `/${base}/add`], upload.single("image"), async (req
 
     const responseAuthors = await fetch(`${res.locals.base_url}/api/${ressourceNameInApi.authors}`);
     const listAuthorsData = await responseAuthors.json();
+    listAuthors = listAuthorsData;
 
     if (response.ok && responseAuthors.ok) {
         ressource = data;

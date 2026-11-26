@@ -43,6 +43,11 @@
                     <input class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-xs focus:outline-hidden focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" type="text" name="title" value="{{ article.title }}"/>
                 </label>
 
+                <label class="block mb-4">
+    <span class="font-bold text-slate-700">Chapô</span>
+    <textarea name="abstract" rows="3" class="block bg-white w-full border border-slate-300 rounded-md py-2 pr-3 shadow-xs focus:outline-hidden focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">{{ article.abstract }}</textarea>
+</label>
+
                 <div class="block mb-4">
                     <label for="image">
                         <span class="font-bold text-slate-700 after:ml-0.5 after:text-red-500">Image</span>
